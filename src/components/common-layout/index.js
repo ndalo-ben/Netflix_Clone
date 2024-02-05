@@ -15,7 +15,7 @@ export default function CommonLayout({ mediaData }) {
     >
       <Head>
         <title>Netflix Clone</title>
-        {/* to do -> to add all other properties */}
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <>
         <Navbar />
@@ -26,8 +26,8 @@ export default function CommonLayout({ mediaData }) {
           <section className="md:space-y-16">
             {mediaData && mediaData.length
               ? mediaData.map((item) => (
-                  <MediaRow key={item.id} title={item.title} medias={item.medias} />
-                ))
+                <MediaRow key={item.id} title={item.title} medias={item.medias} />
+              ))
               : null}
           </section>
         </div>

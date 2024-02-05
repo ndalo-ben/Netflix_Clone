@@ -9,6 +9,7 @@ import AccountForm from './account-form'
 import { TrashIcon } from '@heroicons/react/24/outline'
 import PinContainer from './pin-container'
 import { usePathname, useRouter } from 'next/navigation'
+import { notification } from 'antd'
 
 const initialFormData = {
     name: "",
@@ -43,8 +44,9 @@ export default function ManageAccounts() {
     async function getAllAccounts() {
         const res = await fetch(
             `/api/account/get-all-accounts?id=${session?.user?.uid}`,
-             { method: "GET",
-             });
+            {
+                method: "GET",
+            });
 
         const data = await res.json()
 
@@ -81,6 +83,10 @@ export default function ManageAccounts() {
             getAllAccounts();
             setFormData(initialFormData);
             setShowAccountForm(false);
+
+            notification.success({
+                message: "Account Created Successfully"
+            })
         } else {
             getAllAccounts();
         }
@@ -96,9 +102,13 @@ export default function ManageAccounts() {
 
         const data = await res.json()
 
-        if (data.success) {
+        if (data.success) {   
             getAllAccounts();
             setShowDeleteicon(false);
+
+            notification.success({
+                message: "Account Removed Successfully"
+            })
         }
     }
 
@@ -122,9 +132,13 @@ export default function ManageAccounts() {
             setLoggedInAccount(showPinContainer.account);
             sessionStorage.setItem(
                 "loggedInAccount",
-                 JSON.stringify(showPinContainer.account))
-                 router.push(pathname)
-                 setPageLoader(false)
+                JSON.stringify(showPinContainer.account))
+            router.push(pathname)
+            setPageLoader(false)
+            
+            notification.success({
+                message: "Logged In Successfully"
+            })
         } else {
             setPageLoader(false)
             setPinError(true)
@@ -142,7 +156,7 @@ export default function ManageAccounts() {
                     accounts && accounts.length ? accounts.map((item) => (
                         <li
                             onClick={
-                                showDeleteIcon ? null : () => setShowPinContainer({ show: true, account : item })
+                                showDeleteIcon ? null : () => setShowPinContainer({ show: true, account: item })
                             }
                             key={item._id} className="max-w-[200px] min-w-[200px] w-[155px] cursor-pointer flex flex-col items-center gap-3">
                             <div className="relative">

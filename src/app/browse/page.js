@@ -23,47 +23,47 @@ export default function Browse() {
             const topRatedMovies = await getTopRatedMedias('movie');
 
             setMediaData([
-                    ...[
-                        {
-                            title: "Trending TV Shows",
-                            medias: trendingTvShows
-                        },
-                        {
-                            title: "Popular TV Shows",
-                            medias: popularTvShows
-                        },
-                        {
-                            title: "Top Rated TV Shows",
-                            medias: topRatedTvShows
-                        }
-                    ].map((item) => ({
-                        ...item,
-                        medias: item.medias.map((mediaItem) => ({
-                            ...mediaItem,
-                            mediaType: "tv",
-                        })),
+                ...[
+                    {
+                        title: "Trending TV Shows",
+                        medias: trendingTvShows
+                    },
+                    {
+                        title: "Popular TV Shows",
+                        medias: popularTvShows
+                    },
+                    {
+                        title: "Top Rated TV Shows",
+                        medias: topRatedTvShows
+                    }
+                ].map((item) => ({
+                    ...item,
+                    medias: item.medias.map((mediaItem) => ({
+                        ...mediaItem,
+                        mediaType: "tv",
                     })),
-                    ...[
-                        {
-                            title: "Trending Movies",
-                            medias: trendingMovies
-                        },
-                        {
-                            title: "Popular Movies",
-                            medias: popularMovies
-                        },
-                        {
-                            title: "Top Rated Movies",
-                            medias: topRatedMovies
-                        }
-                    ].map((item) => ({
-                        ...item,
-                        medias: item.medias.map((mediaItem) => ({
-                            ...mediaItem,
-                            type: "movie",
-                        })),
+                })),
+                ...[
+                    {
+                        title: "Trending Movies",
+                        medias: trendingMovies
+                    },
+                    {
+                        title: "Popular Movies",
+                        medias: popularMovies
+                    },
+                    {
+                        title: "Top Rated Movies",
+                        medias: topRatedMovies
+                    }
+                ].map((item) => ({
+                    ...item,
+                    medias: item.medias.map((mediaItem) => ({
+                        ...mediaItem,
+                        type: "movie",
                     })),
-                ]
+                })),
+            ]
             )
 
             setPageLoader(false);
@@ -82,6 +82,6 @@ export default function Browse() {
 
 
     return <main className="flex flex-col min-h-screen ">
-        <CommonLayout mediaData={mediaData}/>
+        <CommonLayout mediaData={mediaData} />
     </main>
 }
