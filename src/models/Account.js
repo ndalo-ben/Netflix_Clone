@@ -6,7 +6,7 @@ const NewAccountSchema = new mongoose.Schema(
         name: String,
         pin: String,
     },
-    {timestamps: true}
+    { timestamps: true }
 );
 
 const Account = mongoose.models.Account || mongoose.model("Account", NewAccountSchema);
