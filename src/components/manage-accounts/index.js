@@ -9,15 +9,11 @@ import AccountForm from './account-form'
 import { TrashIcon } from '@heroicons/react/24/outline'
 import PinContainer from './pin-container'
 import { usePathname, useRouter } from 'next/navigation'
-import { notification } from 'antd'
 
 const initialFormData = {
     name: "",
     pin: "",
 }
-
-
-
 
 export default function ManageAccounts() {
     const {
@@ -83,10 +79,6 @@ export default function ManageAccounts() {
             getAllAccounts();
             setFormData(initialFormData);
             setShowAccountForm(false);
-
-            notification.success({
-                message: "Account Created Successfully"
-            })
         } else {
             getAllAccounts();
         }
@@ -102,13 +94,9 @@ export default function ManageAccounts() {
 
         const data = await res.json()
 
-        if (data.success) {   
+        if (data.success) {
             getAllAccounts();
             setShowDeleteicon(false);
-
-            notification.success({
-                message: "Account Removed Successfully"
-            })
         }
     }
 
@@ -135,10 +123,6 @@ export default function ManageAccounts() {
                 JSON.stringify(showPinContainer.account))
             router.push(pathname)
             setPageLoader(false)
-            
-            notification.success({
-                message: "Logged In Successfully"
-            })
         } else {
             setPageLoader(false)
             setPinError(true)
